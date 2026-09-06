@@ -1371,6 +1371,7 @@ p {
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   align-items: stretch;
+  padding-top: 28px;
 }
 
 .pricing-card {
@@ -1382,6 +1383,7 @@ p {
   flex-direction: column;
   position: relative;
   transition: all var(--transition-normal);
+  overflow: visible;
 }
 
 .pricing-card:hover {
@@ -1396,6 +1398,8 @@ p {
   box-shadow: var(--shadow-gold), 0 0 30px rgba(212, 175, 55, 0.25);
   transform: scale(1.03);
   animation: pulseGlow 4s ease-in-out infinite;
+  overflow: visible;
+  z-index: 2;
 }
 
 .pricing-card.featured:hover {
@@ -1409,13 +1413,16 @@ p {
   transform: translateX(-50%);
   background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
   color: #0A0C10;
-  padding: 4px 18px;
+  padding: 6px 20px;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+  z-index: 10;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .pricing-header {
