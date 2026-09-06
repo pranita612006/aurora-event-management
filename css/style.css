@@ -2479,3 +2479,36 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   OWNER PORTAL STYLES
+   ========================================================================== */
+
+.owner-booking-card {
+  background: rgba(22, 27, 39, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.owner-booking-card:hover {
+  background: rgba(28, 35, 50, 0.95);
+  border-color: var(--gold-500);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.12);
+}
+
+.btn-sm {
+  transition: all 0.2s ease;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-sm:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+

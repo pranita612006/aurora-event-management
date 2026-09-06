@@ -49,6 +49,10 @@
         <button id="sound-toggle-btn" class="sound-toggle-btn" title="Harmonic Ambience Chime" aria-label="Toggle Sound Ambience">
           <i class="fa-solid fa-volume-high"></i>
         </button>
+        <button id="owner-portal-btn" class="btn btn-secondary" style="padding: 10px 16px; font-size: 0.8rem; gap: 6px;" title="Owner Dashboard - Manage Bookings">
+          <i class="fa-solid fa-crown" style="color:var(--gold-400);"></i>
+          <span>Owner Portal</span>
+        </button>
         <a href="#contact" class="btn btn-primary">Quick Book</a>
         <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Mobile Menu">
           <span></span>
@@ -1102,6 +1106,54 @@
           <i class="fa-regular fa-calendar-plus"></i>
           <span>Add to Calendar (.ics)</span>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. OWNER BOOKINGS MANAGEMENT PORTAL MODAL
+       ========================================================================= -->
+  <div id="owner-portal-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width: 860px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; padding: 32px; background: rgba(14, 18, 26, 0.98); border: 1px solid var(--border-gold);">
+      <button id="owner-portal-close" class="modal-close-btn" aria-label="Close Owner Portal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Portal Header -->
+      <div style="margin-bottom: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 16px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold-400); font-weight: 700;">
+              <i class="fa-solid fa-shield-halved"></i> Executive Management Atelier
+            </div>
+            <h3 style="font-size: 1.6rem; color: var(--text-pure); margin-top: 4px;">VIP Bookings &amp; Inquiries</h3>
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">
+              Direct Email Dispatch: <strong style="color: var(--gold-300);">ppawar612006@gmail.com</strong>
+            </div>
+          </div>
+          
+          <button id="owner-clear-all-btn" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.75rem; color: #ff4d4f; border-color: rgba(255, 77, 79, 0.3);">
+            <i class="fa-solid fa-trash-can"></i> Clear History
+          </button>
+        </div>
+
+        <!-- Metric Counter Badges -->
+        <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-subtle); padding: 8px 16px; border-radius: 6px; font-size: 0.82rem;">
+            Total Requests: <strong id="owner-bookings-count" style="color: var(--text-pure); font-size: 1rem;">0</strong>
+          </div>
+          <div style="background: rgba(230, 202, 101, 0.1); border: 1px solid rgba(230, 202, 101, 0.3); padding: 8px 16px; border-radius: 6px; font-size: 0.82rem; color: var(--gold-300);">
+            Pending Review: <strong id="owner-pending-count" style="color: var(--gold-400); font-size: 1rem;">0</strong>
+          </div>
+          <div style="background: rgba(82, 196, 26, 0.1); border: 1px solid rgba(82, 196, 26, 0.3); padding: 8px 16px; border-radius: 6px; font-size: 0.82rem; color: #95de64;">
+            Accepted: <strong id="owner-accepted-count" style="color: #52c41a; font-size: 1rem;">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bookings Scroll List -->
+      <div id="owner-bookings-list" style="overflow-y: auto; flex: 1; padding-right: 6px; display: flex; flex-direction: column; gap: 14px;">
+        <!-- Dynamically rendered booking cards -->
       </div>
     </div>
   </div>
