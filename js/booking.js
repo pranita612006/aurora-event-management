@@ -175,17 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Securing Booking Dossier...</span>`;
       }
 
-      // Construct 1-Click Auto Trigger URLs for Owner's Email
-      const baseUrl = window.location.origin && window.location.origin.includes('http') 
-        ? `${window.location.origin}${window.location.pathname}`
-        : 'https://pranita612006.github.io/aurora-event-management/index.html';
-
-      const autoAcceptLink = `${baseUrl}?auto_action=accept&ref=${encodeURIComponent(refCode)}&name=${encodeURIComponent(fullName)}&email=${encodeURIComponent(email)}&event=${encodeURIComponent(eventType)}&date=${encodeURIComponent(eventDate)}&guests=${guests}&budget=${encodeURIComponent(budgetTier)}`;
-
-      const autoDeclineLink = `${baseUrl}?auto_action=decline&ref=${encodeURIComponent(refCode)}&name=${encodeURIComponent(fullName)}&email=${encodeURIComponent(email)}&event=${encodeURIComponent(eventType)}&date=${encodeURIComponent(eventDate)}&guests=${guests}&budget=${encodeURIComponent(budgetTier)}`;
-
       const emailPayload = {
-        _subject: `👑 [ACTION REQUIRED] VIP Event Booking: ${fullName} - ${eventType} [${refCode}]`,
+        _subject: `👑 VIP Booking Dossier: ${fullName} - ${eventType} [${refCode}]`,
         _replyto: email,
         _template: "table",
         _captcha: "false",
@@ -198,8 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Guest Count": `${guests} Attendees`,
         "Investment Budget": budgetTier,
         "Vision & Remarks": message,
-        "👉 [ 1. AUTO-ACCEPT & SEND ACCEPTANCE TO CLIENT ]": autoAcceptLink,
-        "👉 [ 2. AUTO-REJECT & SEND DECLINE TO CLIENT ]": autoDeclineLink
+        "Direct Reply": `Hit 'Reply' in your email app to respond directly to ${fullName} (${email}), or use the Aurora Owner Atelier Portal.`
       };
 
       // Send to Owner Email via FormSubmit API
@@ -363,13 +353,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center;">
           <button class="btn btn-sm btn-accept" data-id="${item.id}" style="background:rgba(82,196,26,0.18); color:#95de64; border:1px solid rgba(82,196,26,0.4); padding:8px 15px; font-size:0.8rem; font-weight:600; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-            <i class="fa-solid fa-check"></i> Accept (Auto-Email Client)
+            <i class="fa-solid fa-check"></i> Accept &amp; Email Client
           </button>
           <button class="btn btn-sm btn-decline" data-id="${item.id}" style="background:rgba(255,77,79,0.18); color:#ffa39e; border:1px solid rgba(255,77,79,0.4); padding:8px 15px; font-size:0.8rem; font-weight:600; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-            <i class="fa-solid fa-xmark"></i> Reject (Auto-Email Client)
-          </button>
-          <button class="btn btn-sm btn-custom-reply" data-id="${item.id}" style="background:rgba(230,202,101,0.15); color:var(--gold-300); border:1px solid var(--border-gold); padding:8px 12px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;" title="Write Custom Message">
-            <i class="fa-solid fa-pen-to-square"></i> Edit
+            <i class="fa-solid fa-xmark"></i> Reject &amp; Email Client
           </button>
           <button class="btn btn-sm btn-delete" data-id="${item.id}" style="background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:8px 12px; font-size:0.8rem; border-radius:4px; cursor:pointer;" title="Delete Record">
             <i class="fa-solid fa-trash"></i>
@@ -377,22 +364,22 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // 1-Click Automatic Accept Handler
+      // Accept Handler -> Auto-fills Acceptance Template & opens composer
       const acceptBtn = card.querySelector('.btn-accept');
       acceptBtn?.addEventListener('click', () => {
-        sendAutomaticDecisionEmail(item, 'accept', acceptBtn);
+        item.status = "Accepted";
+        saveBookings(bookings);
+        showToast(`Booking ${item.refCode} marked as ACCEPTED! Opening email draft...`, "success");
+        openReplyComposer(item, 'accept');
       });
 
-      // 1-Click Automatic Decline Handler
+      // Decline Handler -> Auto-fills Decline Template & opens composer
       const declineBtn = card.querySelector('.btn-decline');
       declineBtn?.addEventListener('click', () => {
-        sendAutomaticDecisionEmail(item, 'decline', declineBtn);
-      });
-
-      // Custom Edit / Composer Handler
-      const customReplyBtn = card.querySelector('.btn-custom-reply');
-      customReplyBtn?.addEventListener('click', () => {
-        openReplyComposer(item, 'consult');
+        item.status = "Declined";
+        saveBookings(bookings);
+        showToast(`Booking ${item.refCode} marked as DECLINED. Opening email draft...`, "info");
+        openReplyComposer(item, 'decline');
       });
 
       // Delete Handler
@@ -413,6 +400,16 @@ document.addEventListener('DOMContentLoaded', () => {
   async function sendAutomaticDecisionEmail(booking, decision, triggerBtn = null) {
     if (!booking || !booking.email) return;
 
+    // Retrieve stored booking details if available
+    const allBookings = getStoredBookings();
+    const stored = allBookings.find(b => b.refCode === booking.refCode || (b.id && b.id === booking.id));
+    const fullName = (stored && stored.fullName) || booking.fullName || "VIP Client";
+    const eventType = (stored && stored.eventType) || booking.eventType || "Bespoke Production";
+    const eventDate = (stored && stored.eventDate) || booking.eventDate || "Requested Date";
+    const refCode = booking.refCode || (stored && stored.refCode) || "AUR-2026";
+    const guests = (stored && stored.guests) || booking.guests || 150;
+    const budgetTier = (stored && stored.budgetTier) || booking.budgetTier || "Imperial";
+
     const originalHtml = triggerBtn ? triggerBtn.innerHTML : '';
     if (triggerBtn) {
       triggerBtn.disabled = true;
@@ -422,32 +419,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let payload = {};
     if (decision === 'accept') {
       payload = {
-        _subject: `👑 VIP Booking Confirmed: Aurora & Co. [${booking.refCode}]`,
+        _subject: `👑 VIP Booking Confirmed: Aurora & Co. [${refCode}]`,
         _replyto: OWNER_EMAIL,
         _template: "table",
         _captcha: "false",
         "Booking Status": "OFFICIALLY ACCEPTED & CONFIRMED",
-        "Dossier Reference": booking.refCode,
-        "Client Name": booking.fullName,
-        "Event Discipline": booking.eventType,
-        "Confirmed Date": booking.eventDate,
-        "Estimated Scale": `${booking.guests || 150} Attendees`,
-        "Investment Tier": booking.budgetTier || "Imperial",
+        "Dossier Reference": refCode,
+        "Client Name": fullName,
+        "Event Discipline": eventType,
+        "Confirmed Date": eventDate,
+        "Estimated Scale": `${guests} Attendees`,
+        "Investment Tier": budgetTier,
         "Executive Management": "Pranita Pawar & Julian Vance (Aurora & Co. Executive Atelier)",
-        "Atelier Confirmation": `Dear ${booking.fullName}, we are delighted to inform you that your VIP booking dossier (${booking.refCode}) for ${booking.eventType} on ${booking.eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co. Our Executive Producer Julian Vance will be in direct contact to proceed with your bespoke event consultation.`
+        "Atelier Confirmation": `Dear ${fullName}, we are delighted to inform you that your VIP booking dossier (${refCode}) for ${eventType} on ${eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co. Our Executive Producer Julian Vance will be in direct contact to proceed with your bespoke event consultation.`
       };
     } else {
       payload = {
-        _subject: `Booking Inquiry Update: Aurora & Co. [${booking.refCode}]`,
+        _subject: `Booking Inquiry Update: Aurora & Co. [${refCode}]`,
         _replyto: OWNER_EMAIL,
         _template: "table",
         _captcha: "false",
         "Booking Status": "DECLINED (Schedule Fully Booked)",
-        "Dossier Reference": booking.refCode,
-        "Client Name": booking.fullName,
-        "Event Discipline": booking.eventType,
-        "Requested Date": booking.eventDate,
-        "Atelier Notice": `Dear ${booking.fullName}, thank you for reaching out to Aurora & Co. Regarding your booking inquiry (${booking.refCode}) for ${booking.eventDate}, our atelier calendar is currently at maximum capacity for this date and we cannot accept new productions. We warmly invite you to explore alternative dates.`
+        "Dossier Reference": refCode,
+        "Client Name": fullName,
+        "Event Discipline": eventType,
+        "Requested Date": eventDate,
+        "Atelier Notice": `Dear ${fullName}, thank you for reaching out to Aurora & Co. Regarding your booking inquiry (${refCode}) for ${eventDate}, our atelier calendar is currently at maximum capacity for this date and we cannot accept new productions. We warmly invite you to explore alternative dates.`
       };
     }
 
@@ -466,10 +463,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Update booking status in local storage
-    const allBookings = getStoredBookings();
-    const target = allBookings.find(b => b.refCode === booking.refCode || b.id === booking.id);
-    if (target) {
-      target.status = decision === 'accept' ? 'Accepted' : 'Declined';
+    if (stored) {
+      stored.status = decision === 'accept' ? 'Accepted' : 'Declined';
       saveBookings(allBookings);
     } else {
       renderOwnerPortal();
@@ -481,9 +476,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (decision === 'accept') {
-      showToast(`👑 Booking ${booking.refCode} ACCEPTED! Acceptance email sent automatically to ${booking.email}`, "success");
+      showToast(`👑 Booking ${refCode} ACCEPTED! Acceptance email sent automatically to ${booking.email}`, "success");
     } else {
-      showToast(`Booking ${booking.refCode} DECLINED. Notification email sent automatically to ${booking.email}`, "info");
+      showToast(`Booking ${refCode} DECLINED. Notification email sent automatically to ${booking.email}`, "info");
     }
   }
 
@@ -492,22 +487,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const autoAction = urlParams.get('auto_action');
   if (autoAction && (autoAction === 'accept' || autoAction === 'decline')) {
     const ref = urlParams.get('ref') || 'VIP Booking';
-    const name = urlParams.get('name') || 'VIP Client';
     const email = urlParams.get('email');
-    const eventType = urlParams.get('event') || 'Bespoke Event';
-    const eventDate = urlParams.get('date') || 'Target Date';
-    const guests = urlParams.get('guests') || 150;
-    const budgetTier = urlParams.get('budget') || 'Imperial';
 
     if (email) {
       const autoBooking = {
         refCode: ref,
-        fullName: name,
-        email: email,
-        eventType: eventType,
-        eventDate: eventDate,
-        guests: guests,
-        budgetTier: budgetTier
+        email: email
       };
       setTimeout(() => {
         sendAutomaticDecisionEmail(autoBooking, autoAction);
