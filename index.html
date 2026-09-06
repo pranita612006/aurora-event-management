@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURORA & CO. | Haute Event Architecture & Luxury Management</title>
+  <meta name="description" content="Aurora & Co. is a premier global event management atelier crafting bespoke destination weddings, corporate summits, arena concerts, and royal galas worldwide.">
+  <meta name="keywords" content="luxury event management, destination weddings, corporate galas, high profile events, VIP concierge">
+
+  <!-- Google Fonts Preconnect & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="navbar-wrapper">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" aria-label="Aurora and Co. Home">
+        <div class="brand-symbol">A</div>
+        <div class="brand-text">AURORA <span>&amp; CO.</span></div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#services" class="nav-item">Services</a>
+        <a href="#portfolio" class="nav-item">Portfolio</a>
+        <a href="#estimator" class="nav-item">Estimator</a>
+        <a href="#pricing" class="nav-item">Packages</a>
+        <a href="#testimonials" class="nav-item">Reviews</a>
+        <a href="#faq" class="nav-item">FAQ</a>
+        <a href="#contact" class="nav-item">Contact</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <button id="sound-toggle-btn" class="sound-toggle-btn" title="Harmonic Ambience Chime" aria-label="Toggle Sound Ambience">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+        <a href="#contact" class="btn btn-primary">Quick Book</a>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+    <div>
+      <div class="brand-logo" style="margin-bottom: 30px;">
+        <div class="brand-symbol">A</div>
+        <div class="brand-text">AURORA <span>&amp; CO.</span></div>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="#about">About Atelier</a>
+        <a href="#services">Bespoke Services</a>
+        <a href="#portfolio">Event Portfolio</a>
+        <a href="#estimator">Budget Estimator</a>
+        <a href="#pricing">Signature Packages</a>
+        <a href="#testimonials">Client Praise</a>
+        <a href="#faq">Questions &amp; Answers</a>
+        <a href="#contact">Reserve Consultation</a>
+      </div>
+    </div>
+    <div style="margin-top: 30px;">
+      <a href="#contact" class="btn btn-primary" style="width: 100%;">Book an Event</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       HERO SECTION
+       ========================================================================= -->
+  <section id="hero" class="hero-section">
+    <canvas id="hero-particle-canvas" class="hero-bg-canvas"></canvas>
+    <div class="hero-bg-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-badge animate-float">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>International Haute Event Atelier</span>
+      </div>
+
+      <h1 class="hero-title reveal-on-scroll">
+        Where Grandeur Meets <br>
+        <span class="text-gold-gradient">Flawless Orchestration</span>
+      </h1>
+
+      <p class="hero-description reveal-on-scroll stagger-1">
+        We architect transcendent milestones, royal destination weddings, and high-impact global summits with unmatched elegance and cinematic mastery.
+      </p>
+
+      <div class="hero-cta-group reveal-on-scroll stagger-2">
+        <a href="#contact" class="btn btn-primary">
+          <span>Plan Your Experience</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#portfolio" class="btn btn-secondary">
+          <i class="fa-regular fa-compass"></i>
+          <span>Explore Portfolio</span>
+        </a>
+      </div>
+
+      <!-- Live Metric Stats Bar -->
+      <div class="hero-stats-bar reveal-on-scroll stagger-3">
+        <div class="hero-stat-item">
+          <div class="hero-stat-number"><span class="stat-counter" data-target="750">0</span>+</div>
+          <div class="hero-stat-label">Luxury Galas Produced</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-number"><span class="stat-counter" data-target="99.8">0</span>%</div>
+          <div class="hero-stat-label">Client Approval Rating</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-number"><span class="stat-counter" data-target="65">0</span>+</div>
+          <div class="hero-stat-label">Global Design Awards</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-number"><span class="stat-counter" data-target="16">0</span></div>
+          <div class="hero-stat-label">Worldwide Hubs &amp; Islands</div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="hero-scroll-cue">
+        <span>Scroll to explore</span>
+        <i class="fa-solid fa-angles-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PARTNER BRANDS MARQUEE
+       ========================================================================= -->
+  <section class="marquee-section">
+    <div class="marquee-title">Trusted By Prestigious Global Entities &amp; Connoisseurs</div>
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <div class="partner-logo-item"><i class="fa-solid fa-crown"></i> FORBES GLOBAL</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-diamond"></i> TIFFANY &amp; CO.</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-wine-glass"></i> MOËT &amp; CHANDON</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-car-side"></i> ASTON MARTIN</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-gem"></i> BULGARI</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-clock"></i> ROLEX GENÈVE</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-feather"></i> VOGUE LIVING</div>
+      </div>
+      <div class="marquee-content">
+        <div class="partner-logo-item"><i class="fa-solid fa-crown"></i> FORBES GLOBAL</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-diamond"></i> TIFFANY &amp; CO.</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-wine-glass"></i> MOËT &amp; CHANDON</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-car-side"></i> ASTON MARTIN</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-gem"></i> BULGARI</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-clock"></i> ROLEX GENÈVE</div>
+        <div class="partner-logo-item"><i class="fa-solid fa-feather"></i> VOGUE LIVING</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       ABOUT US & HERITAGE
+       ========================================================================= -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Visual Column -->
+        <div class="about-visual-wrap reveal-on-scroll">
+          <div class="about-main-img-box">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" alt="Aurora & Co. Heritage Gala" loading="lazy">
+          </div>
+          <div class="about-floating-card animate-float-slow">
+            <div class="year">EST. 2008</div>
+            <div class="text">18 Years of Architectural Excellence &amp; Royal Distinction</div>
+          </div>
+        </div>
+
+        <!-- Text Content Column -->
+        <div class="about-content reveal-on-scroll stagger-1">
+          <div class="section-subtitle">Our Heritage &amp; Ethos</div>
+          <h2 class="section-title">Mastering The Art Of <br><span class="text-gold-gradient">Ephemeral Grandeur</span></h2>
+          <p class="lead-text">
+            Aurora &amp; Co. was founded with a singular conviction: that life's most momentous occasions should not merely be hosted—they should be immortalized.
+          </p>
+          <p style="margin-top: 14px;">
+            Operating across Manhattan, Mayfair London, Paris, and Dubai, our interdisciplinary atelier brings together scenographers, Michelin chefs, acoustic engineers, and VIP logistics directors to deliver seamless, awe-inspiring experiences.
+          </p>
+
+          <!-- Pillars Grid -->
+          <div class="about-pillars">
+            <div class="pillar-item">
+              <i class="fa-solid fa-compass-drafting pillar-icon"></i>
+              <div>
+                <div class="pillar-title">Bespoke Spatial Design</div>
+                <div class="pillar-desc">Custom pavilions, kinetic stages &amp; botanical art</div>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <i class="fa-solid fa-shield-halved pillar-icon"></i>
+              <div>
+                <div class="pillar-title">Total Confidentiality</div>
+                <div class="pillar-desc">NDA protocols, encrypted registries &amp; discreet security</div>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <i class="fa-solid fa-utensils pillar-icon"></i>
+              <div>
+                <div class="pillar-title">Haute Gastronomy</div>
+                <div class="pillar-desc">Michelin culinary directorship &amp; sommelier pairings</div>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <i class="fa-solid fa-plane-departure pillar-icon"></i>
+              <div>
+                <div class="pillar-title">Global Concierge</div>
+                <div class="pillar-desc">Private jet charters, luxury villa estates &amp; escort</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-outline-gold">
+            <span>Schedule Private Consultation</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =========================================================================
+       SERVICES HUB
+       ========================================================================= -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-subtitle">Curated Offerings</div>
+        <h2 class="section-title">Bespoke Disciplines &amp; <span class="text-gold-gradient">Event Architecture</span></h2>
+        <p class="section-description">
+          Each event is envisioned as a custom work of art. Explore our specialized production verticals tailored for exceptional audiences.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card reveal-on-scroll">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Royal Destination Weddings">
+            <span class="service-badge-tag">Signature</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon-pill"><i class="fa-solid fa-crown"></i></div>
+            <h3>Royal Destination Weddings</h3>
+            <p>Bespoke ceremonies in Tuscan villas, French châteaux, and private coastal sanctuaries with haute couture styling.</p>
+            <ul class="service-features-list">
+              <li><i class="fa-solid fa-check"></i> Architectural floral &amp; scenic design</li>
+              <li><i class="fa-solid fa-check"></i> Michelin-tier culinary orchestration</li>
+              <li><i class="fa-solid fa-check"></i> Celebrity entertainment booking</li>
+            </ul>
+            <button class="service-footer-btn" onclick="openServiceModal('weddings')">
+              <span>Explore Inclusions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card reveal-on-scroll stagger-1">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt="Corporate Galas & Summits">
+            <span class="service-badge-tag">Prestige</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon-pill"><i class="fa-solid fa-gem"></i></div>
+            <h3>Corporate Galas &amp; Summits</h3>
+            <p>Immersive keynote amphitheaters, executive banquets, and award galas designed to elevate enterprise prestige.</p>
+            <ul class="service-features-list">
+              <li><i class="fa-solid fa-check"></i> 3D projection mapping &amp; LED domes</li>
+              <li><i class="fa-solid fa-check"></i> Broadcast livestreaming infrastructure</li>
+              <li><i class="fa-solid fa-check"></i> High-security executive protocols</li>
+            </ul>
+            <button class="service-footer-btn" onclick="openServiceModal('corporate')">
+              <span>Explore Inclusions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card reveal-on-scroll stagger-2">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Symphonic & Arena Concerts">
+            <span class="service-badge-tag">Acoustic</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon-pill"><i class="fa-solid fa-compact-disc"></i></div>
+            <h3>Symphonic &amp; Elite Concerts</h3>
+            <p>Arena stadium spectacles and private orchestra recitals engineered with world-class acoustic mastery.</p>
+            <ul class="service-features-list">
+              <li><i class="fa-solid fa-check"></i> Dolby Atmos spatial audio rigs</li>
+              <li><i class="fa-solid fa-check"></i> Kinetic pyrotechnics &amp; laser shows</li>
+              <li><i class="fa-solid fa-check"></i> VIP backstage lounges &amp; riders</li>
+            </ul>
+            <button class="service-footer-btn" onclick="openServiceModal('concerts')">
+              <span>Explore Inclusions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card reveal-on-scroll">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" alt="Exclusive Private Soirées">
+            <span class="service-badge-tag">VIP</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon-pill"><i class="fa-solid fa-champagne-glasses"></i></div>
+            <h3>Exclusive Private Soirées</h3>
+            <p>Milestone birthdays, masquerade balls, and private superyacht gatherings curated with utmost discretion.</p>
+            <ul class="service-features-list">
+              <li><i class="fa-solid fa-check"></i> Themed sensory staging &amp; scenting</li>
+              <li><i class="fa-solid fa-check"></i> Master mixology &amp; rare cellars</li>
+              <li><i class="fa-solid fa-check"></i> Top international DJ curation</li>
+            </ul>
+            <button class="service-footer-btn" onclick="openServiceModal('parties')">
+              <span>Explore Inclusions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card reveal-on-scroll stagger-1">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80" alt="Product & Auto Unveilings">
+            <span class="service-badge-tag">Spectacle</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon-pill"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3>Product &amp; Auto Unveilings</h3>
+            <p>Automotive debuts, watchmaker showcases, and global luxury product launches that dominate media headlines.</p>
+            <ul class="service-features-list">
+              <li><i class="fa-solid fa-check"></i> Drone swarm synchronized choreography</li>
+              <li><i class="fa-solid fa-check"></i> Kinetic reveals &amp; smoke curtains</li>
+              <li><i class="fa-solid fa-check"></i> Global press &amp; influencer zones</li>
+            </ul>
+            <button class="service-footer-btn" onclick="openServiceModal('launches')">
+              <span>Explore Inclusions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card reveal-on-scroll stagger-2">
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Haute Runway & Galas">
+            <span class="service-badge-tag">Haute Couture</span>
+          </div>
+          <div class="service-body">
+            <div class="service-icon-pill"><i class="fa-solid fa-vest-patches"></i></div>
+            <h3>Haute Runway &amp; Galas</h3>
+            <p>Fashion week runways and museum charity galas wrapped in avant-garde architectural splendor.</p>
+            <ul class="service-features-list">
+              <li><i class="fa-solid fa-check"></i> Mirrored catwalk fabrication</li>
+              <li><i class="fa-solid fa-check"></i> Front-row VIP hospitality suites</li>
+              <li><i class="fa-solid fa-check"></i> Architectural lighting matrices</li>
+            </ul>
+            <button class="service-footer-btn" onclick="openServiceModal('fashion')">
+              <span>Explore Inclusions</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =========================================================================
+       PORTFOLIO & FILTERABLE GALLERY
+       ========================================================================= -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-subtitle">Grand Archives</div>
+        <h2 class="section-title">Selected <span class="text-gold-gradient">Masterpieces</span></h2>
+        <p class="section-description">
+          A glimpse into our curated portfolio of royal weddings, sovereign galas, and visionary product reveals worldwide.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="gallery-filters-bar reveal-on-scroll">
+        <button class="gallery-filter-btn active" data-filter="all">All Disciplines</button>
+        <button class="gallery-filter-btn" data-filter="weddings">Weddings</button>
+        <button class="gallery-filter-btn" data-filter="corporate">Corporate</button>
+        <button class="gallery-filter-btn" data-filter="concerts">Concerts</button>
+        <button class="gallery-filter-btn" data-filter="parties">Private VIP</button>
+        <button class="gallery-filter-btn" data-filter="launches">Launches</button>
+      </div>
+
+      <!-- Dynamic Portfolio Grid -->
+      <div id="portfolio-items-grid" class="portfolio-grid">
+        <!-- Rendered via js/gallery.js -->
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =========================================================================
+       INTERACTIVE BUDGET & EXPERIENCE ESTIMATOR
+       ========================================================================= -->
+  <section id="estimator" class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-subtitle">Real-Time Planning Tool</div>
+        <h2 class="section-title">Interactive <span class="text-gold-gradient">Experience Estimator</span></h2>
+        <p class="section-description">
+          Model your celebration parameters to receive an instant production estimate tailored to your vision.
+        </p>
+      </div>
+
+      <div class="estimator-wrapper reveal-on-scroll">
+        <!-- Controls Column -->
+        <div class="estimator-controls">
+          <!-- Step 1: Event Type -->
+          <div>
+            <div class="estimator-group-title">
+              <i class="fa-solid fa-layer-group"></i> 1. Select Discipline
+            </div>
+            <div class="estimator-options-grid">
+              <div class="estimator-radio-card estimator-type-card selected" data-type="weddings">
+                <div class="card-icon"><i class="fa-solid fa-crown"></i></div>
+                <div class="card-name">Wedding</div>
+              </div>
+              <div class="estimator-radio-card estimator-type-card" data-type="corporate">
+                <div class="card-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="card-name">Corporate</div>
+              </div>
+              <div class="estimator-radio-card estimator-type-card" data-type="concerts">
+                <div class="card-icon"><i class="fa-solid fa-guitar"></i></div>
+                <div class="card-name">Concert</div>
+              </div>
+              <div class="estimator-radio-card estimator-type-card" data-type="parties">
+                <div class="card-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+                <div class="card-name">Private Gala</div>
+              </div>
+              <div class="estimator-radio-card estimator-type-card" data-type="launches">
+                <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                <div class="card-name">Product Reveal</div>
+              </div>
+              <div class="estimator-radio-card estimator-type-card" data-type="fashion">
+                <div class="card-icon"><i class="fa-solid fa-vest-patches"></i></div>
+                <div class="card-name">Runway Show</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Guest Count Slider -->
+          <div>
+            <div class="estimator-group-title">
+              <i class="fa-solid fa-users"></i> 2. Estimated Guest Count
+            </div>
+            <div class="slider-container">
+              <div class="slider-header">
+                <span style="font-size:0.85rem; color:var(--text-muted);">Adjust attendee scale:</span>
+                <span id="estimator-guest-val" class="slider-value-badge">150 Attendees</span>
+              </div>
+              <input type="range" id="estimator-guests" class="range-input" min="20" max="1500" step="10" value="150">
+            </div>
+          </div>
+
+          <!-- Step 3: Production Level -->
+          <div>
+            <div class="estimator-group-title">
+              <i class="fa-solid fa-award"></i> 3. Production &amp; Scenography Tier
+            </div>
+            <div class="estimator-options-grid">
+              <div class="estimator-radio-card estimator-tier-card" data-tier="gold">
+                <div class="card-icon"><i class="fa-solid fa-certificate"></i></div>
+                <div class="card-name">Gold Elegance</div>
+              </div>
+              <div class="estimator-radio-card estimator-tier-card selected" data-tier="diamond">
+                <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+                <div class="card-name">Diamond Prestige</div>
+              </div>
+              <div class="estimator-radio-card estimator-tier-card" data-tier="platinum">
+                <div class="card-icon"><i class="fa-solid fa-crown"></i></div>
+                <div class="card-name">Platinum Royal</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Bespoke Inclusions -->
+          <div>
+            <div class="estimator-group-title">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> 4. Bespoke Add-Ons
+            </div>
+            <div class="estimator-addons-grid">
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price="1800000">
+                <div class="addon-info">
+                  <span class="addon-name">Synchronized Drone Show</span>
+                  <span class="addon-price">+₹18,00,000</span>
+                </div>
+              </label>
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price="2500000">
+                <div class="addon-info">
+                  <span class="addon-name">Michelin 3-Star Chef Brigade</span>
+                  <span class="addon-price">+₹25,00,000</span>
+                </div>
+              </label>
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price="3500000">
+                <div class="addon-info">
+                  <span class="addon-name">A-List Headline Performer</span>
+                  <span class="addon-price">+₹35,00,000</span>
+                </div>
+              </label>
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price="1200000">
+                <div class="addon-info">
+                  <span class="addon-name">4K Cinematic Multi-Cam Film</span>
+                  <span class="addon-price">+₹12,00,000</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Column -->
+        <div class="estimator-summary-panel">
+          <div>
+            <div class="summary-header">
+              <h4>Estimated Production Scope</h4>
+              <div id="estimator-total-price" class="summary-price-display">₹82,00,000 - ₹97,00,000</div>
+              <div class="summary-subtext">Estimated total investment range (all-inclusive)</div>
+            </div>
+
+            <div class="summary-breakdown-list">
+              <div class="summary-breakdown-row">
+                <span>Discipline:</span>
+                <span id="summary-event-type">Royal Wedding</span>
+              </div>
+              <div class="summary-breakdown-row">
+                <span>Scale:</span>
+                <span id="summary-guest-count">150 Guests</span>
+              </div>
+              <div class="summary-breakdown-row">
+                <span>Production Tier:</span>
+                <span id="summary-prod-tier">Diamond Prestige</span>
+              </div>
+              <div class="summary-breakdown-row">
+                <span>Selected Add-ons:</span>
+                <span id="summary-addons-total">₹0</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button id="apply-estimator-to-booking" class="btn btn-primary" style="width:100%;">
+              <span>Apply to Booking Inquiry</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </button>
+            <p style="text-align:center; font-size:0.75rem; color:var(--text-muted); margin-top:10px;">
+              *Formal proposals are confirmed upon consultation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =========================================================================
+       PRICING & PACKAGES
+       ========================================================================= -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-subtitle">Tiered Engagements</div>
+        <h2 class="section-title">Signature <span class="text-gold-gradient">Production Packages</span></h2>
+        <p class="section-description">
+          Structured retainers designed for clarity, discretion, and flawless execution.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Tier 1 -->
+        <div class="pricing-card reveal-on-scroll">
+          <div class="pricing-header">
+            <h3 class="pricing-tier-name">The Sovereign</h3>
+            <div class="pricing-tagline">Essential Luxury Excellence</div>
+            <div class="pricing-amount">₹25,00,000 <span>/ Base Retainer</span></div>
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Complete Event Concept &amp; Styling</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Lead Executive Producer &amp; On-Site Team</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Curated 5-Star Estate &amp; Venue Scouting</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Floral &amp; Architectural Lighting Rigging</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Full Timeline Management &amp; Run of Show</div>
+            <div class="pricing-feature-item disabled"><i class="fa-solid fa-xmark"></i> 3D Projection Mapping Arena</div>
+            <div class="pricing-feature-item disabled"><i class="fa-solid fa-xmark"></i> Private Aviation &amp; Superyacht Charter</div>
+          </div>
+          <button class="btn btn-secondary package-select-btn" data-tier="sovereign">Select Sovereign</button>
+        </div>
+
+        <!-- Tier 2 (Featured) -->
+        <div class="pricing-card featured reveal-on-scroll stagger-1">
+          <div class="pricing-badge">Most Requested</div>
+          <div class="pricing-header">
+            <h3 class="pricing-tier-name">The Celestial</h3>
+            <div class="pricing-tagline">Grand Luxe &amp; High Production</div>
+            <div class="pricing-amount">₹65,00,000 <span>/ Base Retainer</span></div>
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Everything in Sovereign tier</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Immersive 3D Spatial &amp; Scenic Architecture</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Haute Cuisine &amp; Master Mixology Design</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Celebrity / Top-Tier Artist Booking</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Synchronized Light &amp; Drone Spectacle</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> 4K Cinematic Multi-Cam Film &amp; Teasers</div>
+            <div class="pricing-feature-item disabled"><i class="fa-solid fa-xmark"></i> Custom Pavilion Construction</div>
+          </div>
+          <button class="btn btn-primary package-select-btn" data-tier="celestial">Select Celestial</button>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="pricing-card reveal-on-scroll stagger-2">
+          <div class="pricing-header">
+            <h3 class="pricing-tier-name">The Imperial</h3>
+            <div class="pricing-tagline">Royal Bespoke &amp; Infinite Splendor</div>
+            <div class="pricing-amount">Bespoke <span>/ Custom Scope</span></div>
+          </div>
+          <div class="pricing-features">
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Unlimited Spatial Architecture &amp; Glasshouses</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> 3-Star Michelin Chef Brigade &amp; Sommelier</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Global A-List Headline Performers &amp; Orchestra</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Ironclad NDA Protocols &amp; Secure Escorts</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> 24/7 Dedicated VIP Concierge Atelier</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Private Jet Charters &amp; Island Buyouts</div>
+            <div class="pricing-feature-item"><i class="fa-solid fa-check"></i> Heirloom Photo Albums &amp; Feature Doc</div>
+          </div>
+          <button class="btn btn-secondary package-select-btn" data-tier="imperial">Select Imperial</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =========================================================================
+       TESTIMONIALS & CLIENT REVIEWS
+       ========================================================================= -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-subtitle">Words of Acclaim</div>
+        <h2 class="section-title">Client <span class="text-gold-gradient">Accolades</span></h2>
+        <p class="section-description">
+          Reflections from the royal families, luminaries, and corporate titans we have had the honor to serve.
+        </p>
+      </div>
+
+      <div class="testimonials-carousel-wrap reveal-on-scroll">
+        <div id="testimonial-track" class="testimonial-track">
+          <!-- Populated by js/testimonials.js -->
+        </div>
+
+        <!-- Controls -->
+        <div class="carousel-controls">
+          <button id="testimonial-prev" class="btn-icon" aria-label="Previous Testimonial">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div id="testimonial-dots" class="carousel-dots"></div>
+          <button id="testimonial-next" class="btn-icon" aria-label="Next Testimonial">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =========================================================================
+       CONTACT & SMART BOOKING SYSTEM
+       ========================================================================= -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-subtitle">Initiate Your Vision</div>
+        <h2 class="section-title">Reserve A <span class="text-gold-gradient">VIP Consultation</span></h2>
+        <p class="section-description">
+          Our Senior Event Producers are ready to craft your bespoke masterplan. Complete the dossier below to begin.
+        </p>
+      </div>
+
+      <div class="booking-layout">
+        <!-- Left Information Panel -->
+        <div class="booking-info-panel reveal-on-scroll">
+          <div class="glass-card" style="padding: 32px;">
+            <h3 style="margin-bottom: 12px; color: var(--gold-300);">The Aurora Experience</h3>
+            <p style="font-size: 0.92rem; margin-bottom: 24px;">
+              Every consultation includes a confidential creative brainstorming session, preliminary floor plans, and a line-item budget estimate.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div class="booking-benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="benefit-content">
+                  <h4>24-Hour Response Guarantee</h4>
+                  <p>A Senior Executive Director will review your brief within one business day.</p>
+                </div>
+              </div>
+
+              <div class="booking-benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="benefit-content">
+                  <h4>Encrypted &amp; Confidential</h4>
+                  <p>All client communications and guest lists remain strictly shielded under NDA.</p>
+                </div>
+              </div>
+
+              <div class="booking-benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-globe"></i></div>
+                <div class="benefit-content">
+                  <h4>Global Production Directorship</h4>
+                  <p>On-site execution across the Americas, Europe, Middle East, and Asia-Pacific.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Line Card -->
+          <div class="glass-card" style="padding: 24px; border-color: var(--border-gold);">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div class="benefit-icon" style="background: var(--gold-500); color: #0A0C10;">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-400);">Private Desk Hotline</div>
+                <div style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; color: #FFF;">+1 (800) 892-LUXE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Booking Form -->
+        <div class="booking-form-card reveal-on-scroll stagger-1">
+          <form id="event-booking-form">
+            <!-- Event Type Pill Selector -->
+            <div class="form-group">
+              <label class="form-label">Event Discipline <span>*</span></label>
+              <div class="event-type-pills">
+                <div class="event-pill booking-event-pill selected" data-value="weddings">Wedding</div>
+                <div class="event-pill booking-event-pill" data-value="corporate">Corporate</div>
+                <div class="event-pill booking-event-pill" data-value="concerts">Concert</div>
+                <div class="event-pill booking-event-pill" data-value="parties">Private Gala</div>
+                <div class="event-pill booking-event-pill" data-value="launches">Product Reveal</div>
+                <div class="event-pill booking-event-pill" data-value="fashion">Haute Runway</div>
+              </div>
+              <select id="booking-event-type" class="form-control" style="display: none;">
+                <option value="weddings" selected>Royal Destination Wedding</option>
+                <option value="corporate">Corporate Gala &amp; Summit</option>
+                <option value="concerts">Symphonic &amp; Arena Concert</option>
+                <option value="parties">Exclusive Private Soirée</option>
+                <option value="launches">Product &amp; Auto Unveiling</option>
+                <option value="fashion">Haute Runway &amp; Gala</option>
+              </select>
+            </div>
+
+            <!-- Name & Email -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="booking-name" class="form-label">Full Name <span>*</span></label>
+                <input type="text" id="booking-name" class="form-control" placeholder="Lady Genevieve Sterling" required>
+              </div>
+              <div class="form-group">
+                <label for="booking-email" class="form-label">Email Address <span>*</span></label>
+                <input type="email" id="booking-email" class="form-control" placeholder="genevieve@sterling.com" required>
+              </div>
+            </div>
+
+            <!-- Phone & Target Date -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="booking-phone" class="form-label">Contact Phone</label>
+                <input type="tel" id="booking-phone" class="form-control" placeholder="+1 (555) 234-5678">
+              </div>
+              <div class="form-group">
+                <label for="booking-date" class="form-label">Desired Event Date <span>*</span></label>
+                <input type="date" id="booking-date" class="form-control" required>
+              </div>
+            </div>
+
+            <!-- Guest Count Slider -->
+            <div class="form-group">
+              <label class="form-label">Expected Guest Count: <span id="booking-guests-val" style="color:var(--gold-400); font-weight:700;">150 Guests</span></label>
+              <input type="range" id="booking-guests" class="range-input" min="10" max="2000" step="10" value="150">
+            </div>
+
+            <!-- Budget Level -->
+            <div class="form-group">
+              <label for="booking-budget" class="form-label">Target Investment Range</label>
+              <select id="booking-budget" class="form-control">
+                <option value="Sovereign (₹25L+)">Sovereign Tier (₹25,00,000 - ₹50,00,000)</option>
+                <option value="Celestial (₹65L+)" selected>Celestial Tier (₹65,00,000 - ₹1,50,00,000)</option>
+                <option value="Imperial (Royal Bespoke)">Imperial Tier (₹1.50 Cr - ₹10 Cr+)</option>
+              </select>
+            </div>
+
+            <!-- Custom Message -->
+            <div class="form-group">
+              <label for="booking-message" class="form-label">Vision &amp; Bespoke Requirements</label>
+              <textarea id="booking-message" class="form-control" placeholder="Share your preferred destination, aesthetic themes, artist preferences, or specific inquiries..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="btn-submit-booking" class="btn btn-primary" style="width: 100%; padding: 18px;">
+              <span>Submit VIP Booking Dossier</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- =========================================================================
+       FAQ ACCORDION
+       ========================================================================= -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <div class="section-subtitle">Inquiries &amp; Curiosities</div>
+        <h2 class="section-title">Frequently Asked <span class="text-gold-gradient">Questions</span></h2>
+        <p class="section-description">
+          Answers to fundamental questions regarding our production protocols, international travel, and security.
+        </p>
+      </div>
+
+      <!-- FAQ Search -->
+      <div class="faq-search-wrap reveal-on-scroll">
+        <i class="fa-solid fa-magnifying-glass faq-search-icon"></i>
+        <input type="text" id="faq-search-input" class="faq-search-input" placeholder="Search questions (e.g. international, confidentiality, pricing)...">
+      </div>
+
+      <div class="faq-accordion reveal-on-scroll">
+        <div class="faq-item active">
+          <button class="faq-question-btn">
+            <span>How far in advance should we engage Aurora &amp; Co. for an event?</span>
+            <div class="faq-icon-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-answer">
+            For large-scale destination weddings, multi-day summits, and arena concerts, we recommend 6 to 14 months in advance. However, our rapid-response bespoke unit can orchestrate high-profile private soirées and product reveals in as little as 4 to 8 weeks.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>Do you manage international destination events?</span>
+            <div class="faq-icon-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-answer">
+            Yes. Over 65% of our portfolio spans international luxury hubs including Lake Como, Paris, Monaco, Dubai, Kyoto, Aspen, St. Moritz, and the Caribbean Islands. We manage all cross-border logistics, visas, permits, and private aviation.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>How do you ensure client privacy and event confidentiality?</span>
+            <div class="faq-icon-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-answer">
+            We maintain strict non-disclosure agreements (NDAs) for our entire crew and subcontractor network. For celebrity and high-net-worth clients, we deploy discreet counter-drone shields, encrypted communications, and private security protocols.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>What is your typical pricing structure and minimum engagement?</span>
+            <div class="faq-icon-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-answer">
+            Our signature packages start with curated production retainers plus transparent management percentages. We customize all line items with zero hidden markups. See our interactive Budget Estimator above to model your vision.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question-btn">
+            <span>Can you source exclusive celebrity performers and Michelin-starred chefs?</span>
+            <div class="faq-icon-indicator"><i class="fa-solid fa-chevron-down"></i></div>
+          </button>
+          <div class="faq-answer">
+            Yes. Our direct relationships with elite talent agencies and Michelin culinary masters allow us to book world-renowned artists, conductors, and private guest chefs exclusively for your evening.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand -->
+        <div class="footer-brand-col">
+          <div class="brand-logo">
+            <div class="brand-symbol">A</div>
+            <div class="brand-text">AURORA <span>&amp; CO.</span></div>
+          </div>
+          <p>
+            Haute event architecture, bespoke royal weddings, and visionary productions for the world's most discerning individuals.
+          </p>
+          <div class="social-links-row">
+            <a href="#" class="social-circle-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-circle-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-circle-btn" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="#" class="social-circle-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="footer-col">
+          <h4>Atelier</h4>
+          <div class="footer-links-list">
+            <a href="#about">Heritage Story</a>
+            <a href="#services">Disciplines</a>
+            <a href="#portfolio">Grand Portfolio</a>
+            <a href="#estimator">Budget Calculator</a>
+            <a href="#pricing">Production Tiers</a>
+          </div>
+        </div>
+
+        <!-- Col 3: Global Hubs -->
+        <div class="footer-col">
+          <h4>Global Ateliers</h4>
+          <div class="footer-links-list" style="font-size:0.85rem; color:var(--text-muted);">
+            <div><strong style="color:var(--gold-400);">New York:</strong> Madison Ave, Manhattan</div>
+            <div><strong style="color:var(--gold-400);">London:</strong> Berkeley Square, Mayfair</div>
+            <div><strong style="color:var(--gold-400);">Paris:</strong> Rue du Faubourg Saint-Honoré</div>
+            <div><strong style="color:var(--gold-400);">Dubai:</strong> DIFC Gate District</div>
+          </div>
+        </div>
+
+        <!-- Col 4: VIP Newsletter -->
+        <div class="footer-col">
+          <h4>Aurora Privé</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;">Subscribe to receive private invitations to our seasonal showcase galas and trend forecasts.</p>
+          <form id="newsletter-form" class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your VIP email address..." required>
+            <button type="submit" class="btn btn-primary" style="padding: 10px 18px;">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 AURORA &amp; CO. Bespoke Events LLC. All Rights Reserved.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="#">Privacy Charter</a>
+          <a href="#">NDA Protocol</a>
+          <a href="#">Terms of Engagement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODALS
+       ========================================================================= -->
+
+  <!-- 1. Fullscreen Lightbox Modal -->
+  <div id="lightbox-modal" class="modal-backdrop">
+    <div class="modal-card lightbox-modal">
+      <button id="lightbox-close" class="modal-close-btn" aria-label="Close Lightbox">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="lightbox-content">
+        <div class="lightbox-img-box">
+          <img id="lightbox-img" src="" alt="Showcase Image">
+        </div>
+        <div class="lightbox-details">
+          <div>
+            <h3 id="lightbox-title" style="margin-bottom: 4px;"></h3>
+            <div id="lightbox-location" style="font-size: 0.85rem; color: var(--gold-400);"></div>
+            <p id="lightbox-desc" style="font-size: 0.9rem; margin-top: 8px; color: var(--text-secondary);"></p>
+          </div>
+          <a href="#contact" class="btn btn-primary" onclick="document.getElementById('lightbox-modal').classList.remove('open'); document.body.style.overflow='';">
+            <span>Inquire for Similar</span>
+          </a>
+        </div>
+        <button id="lightbox-prev" class="lightbox-nav-btn lightbox-prev" aria-label="Previous image">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="lightbox-next" class="lightbox-nav-btn lightbox-next" aria-label="Next image">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Service Details Modal -->
+  <div id="service-detail-modal" class="modal-backdrop">
+    <div class="modal-card" style="padding: 36px;">
+      <button id="service-modal-close" class="modal-close-btn" aria-label="Close Service Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="service-modal-img" src="" alt="Service preview" style="width:100%; height:260px; object-fit:cover; border-radius:var(--radius-sm); margin-bottom:20px; border:1px solid var(--border-gold);">
+      <h3 id="service-modal-title" style="color:var(--text-pure); margin-bottom:12px;"></h3>
+      <p id="service-modal-desc" style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:20px; line-height:1.6;"></p>
+      
+      <h4 style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold-400); margin-bottom:12px;">Included Capabilities &amp; Logistics:</h4>
+      <ul id="service-modal-features" style="margin-bottom:28px; font-size:0.9rem; color:var(--text-secondary);"></ul>
+
+      <button id="service-modal-book-btn" class="btn btn-primary" style="width: 100%;">
+        <span>Reserve Consultation For This Service</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 3. Booking Confirmation Receipt Modal -->
+  <div id="receipt-modal" class="modal-backdrop receipt-modal">
+    <div class="modal-card receipt-ticket">
+      <button id="receipt-modal-close" class="modal-close-btn" aria-label="Close Receipt Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div class="receipt-icon-circle animate-pulse-glow">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <h3 style="font-size: 1.8rem; margin-bottom: 6px;">VIP Booking Confirmed</h3>
+      <p style="font-size: 0.92rem; color: var(--text-secondary);">
+        Your event consultation dossier has been received and logged in the Aurora Private Register.
+      </p>
+
+      <div id="receipt-ref-code" class="receipt-ref-code">AUR-2026-9482</div>
+
+      <table class="receipt-table">
+        <tr>
+          <td>Client Name:</td>
+          <td id="receipt-client-name">Lady Genevieve Sterling</td>
+        </tr>
+        <tr>
+          <td>VIP Email:</td>
+          <td id="receipt-client-email">genevieve@sterling.com</td>
+        </tr>
+        <tr>
+          <td>Event Discipline:</td>
+          <td id="receipt-event-type">Royal Destination Wedding</td>
+        </tr>
+        <tr>
+          <td>Consultation Date:</td>
+          <td id="receipt-event-date">Saturday, October 24, 2026</td>
+        </tr>
+        <tr>
+          <td>Expected Scale:</td>
+          <td id="receipt-event-guests">150 Attendees</td>
+        </tr>
+        <tr>
+          <td>Investment Tier:</td>
+          <td id="receipt-event-budget">Celestial Tier</td>
+        </tr>
+        <tr>
+          <td>Executive Liaison:</td>
+          <td style="color:var(--gold-400);">Julian Vance (Senior Producer)</td>
+        </tr>
+      </table>
+
+      <div style="display: flex; gap: 12px;">
+        <button id="btn-download-receipt" class="btn btn-primary" style="flex: 1;">
+          <i class="fa-solid fa-print"></i>
+          <span>Print / Save Receipt</span>
+        </button>
+        <button id="btn-calendar-invite" class="btn btn-secondary" style="flex: 1;">
+          <i class="fa-regular fa-calendar-plus"></i>
+          <span>Add to Calendar (.ics)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       VIP CONCIERGE CHAT WIDGET
+       ========================================================================= -->
+  <button id="concierge-toggle-btn" class="concierge-floating-btn animate-pulse-glow" aria-label="Open VIP Concierge">
+    <span class="live-radar-dot" style="position:absolute; top:8px; right:8px; width:7px; height:7px;"></span>
+    <i class="fa-solid fa-gem animate-star-twinkle"></i>
+    <span>VIP Concierge</span>
+  </button>
+
+  <div id="concierge-drawer" class="concierge-drawer">
+    <div class="concierge-header">
+      <div class="concierge-header-info">
+        <div class="concierge-avatar-badge">J</div>
+        <div>
+          <div style="font-size:0.9rem; font-weight:600; color:#FFF;">Julian Vance</div>
+          <div style="font-size:0.72rem; color:var(--gold-400); display:flex; align-items:center; gap:6px;">
+            <span class="live-radar-dot" style="background:#52c41a;"></span>
+            Online &bull; Senior Concierge
+          </div>
+        </div>
+      </div>
+      <button id="concierge-close-btn" style="color:var(--text-muted); font-size:1.1rem; padding:4px;" aria-label="Close Chat">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div id="concierge-messages" class="concierge-messages-area">
+      <!-- Dynamic chat bubbles -->
+    </div>
+
+    <div class="concierge-quick-chips">
+      <button class="quick-chip-btn" data-query="What are your package prices?">Pricing &amp; Packages</button>
+      <button class="quick-chip-btn" data-query="How do destination weddings work?">Destination Weddings</button>
+      <button class="quick-chip-btn" data-query="What are your privacy and NDA policies?">Confidentiality &amp; NDAs</button>
+      <button class="quick-chip-btn" data-query="How can I book a private consultation?">Book Consultation</button>
+    </div>
+
+    <div class="concierge-input-bar">
+      <input type="text" id="concierge-input" placeholder="Inquire with private concierge...">
+      <button id="concierge-send-btn" class="btn-icon" style="width:36px; height:36px;" aria-label="Send Message">
+        <i class="fa-solid fa-paper-plane" style="font-size:0.8rem;"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/estimator.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/testimonials.js"></script>
+  <script src="js/concierge.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
