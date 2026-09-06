@@ -175,20 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Securing Booking Dossier...</span>`;
       }
 
-      // 1-Click Action Links for Owner in Email
-      const acceptSubject = encodeURIComponent(`VIP Booking APPROVED: Aurora & Co. [${refCode}]`);
-      const acceptBody = encodeURIComponent(
-        `Dear ${fullName},\n\nWe are delighted to inform you that your VIP booking dossier (${refCode}) for ${eventType} on ${eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co.\n\nOur Executive Producer Julian Vance will be in direct contact with you to proceed with the private bespoke design consultation.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Event Atelier\nContact: ${OWNER_EMAIL}`
-      );
-      const gmailAcceptLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${acceptSubject}&body=${acceptBody}`;
-      const mailtoAcceptLink = `mailto:${email}?subject=${acceptSubject}&body=${acceptBody}`;
+      // Construct 1-Click Auto Trigger URLs for Owner's Email
+      const baseUrl = window.location.origin && window.location.origin.includes('http') 
+        ? `${window.location.origin}${window.location.pathname}`
+        : 'https://pranita612006.github.io/aurora-event-management/index.html';
 
-      const declineSubject = encodeURIComponent(`Booking Update: Aurora & Co. [${refCode}]`);
-      const declineBody = encodeURIComponent(
-        `Dear ${fullName},\n\nThank you for reaching out to Aurora & Co. Regarding your booking inquiry (${refCode}) for ${eventDate}, our production calendar is currently at maximum capacity for this date and we are unable to accept new commissions.\n\nWe warmly invite you to inquire for alternative dates with our atelier.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Event Atelier\nContact: ${OWNER_EMAIL}`
-      );
-      const gmailDeclineLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${declineSubject}&body=${declineBody}`;
-      const mailtoDeclineLink = `mailto:${email}?subject=${declineSubject}&body=${declineBody}`;
+      const autoAcceptLink = `${baseUrl}?auto_action=accept&ref=${encodeURIComponent(refCode)}&name=${encodeURIComponent(fullName)}&email=${encodeURIComponent(email)}&event=${encodeURIComponent(eventType)}&date=${encodeURIComponent(eventDate)}&guests=${guests}&budget=${encodeURIComponent(budgetTier)}`;
+
+      const autoDeclineLink = `${baseUrl}?auto_action=decline&ref=${encodeURIComponent(refCode)}&name=${encodeURIComponent(fullName)}&email=${encodeURIComponent(email)}&event=${encodeURIComponent(eventType)}&date=${encodeURIComponent(eventDate)}&guests=${guests}&budget=${encodeURIComponent(budgetTier)}`;
 
       const emailPayload = {
         _subject: `👑 [ACTION REQUIRED] VIP Event Booking: ${fullName} - ${eventType} [${refCode}]`,
@@ -204,10 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
         "Guest Count": `${guests} Attendees`,
         "Investment Budget": budgetTier,
         "Vision & Remarks": message,
-        "👉 [ 1. ACCEPT & EMAIL CLIENT (GMAIL) ]": gmailAcceptLink,
-        "👉 [ 2. REJECT & EMAIL CLIENT (GMAIL) ]": gmailDeclineLink,
-        "👉 [ ACCEPT (DEFAULT MAIL APP) ]": mailtoAcceptLink,
-        "👉 [ REJECT (DEFAULT MAIL APP) ]": mailtoDeclineLink
+        "👉 [ 1. AUTO-ACCEPT & SEND ACCEPTANCE TO CLIENT ]": autoAcceptLink,
+        "👉 [ 2. AUTO-REJECT & SEND DECLINE TO CLIENT ]": autoDeclineLink
       };
 
       // Send to Owner Email via FormSubmit API
@@ -370,40 +362,34 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center;">
-          <button class="btn btn-sm btn-accept" data-id="${item.id}" style="background:rgba(82,196,26,0.15); color:#95de64; border:1px solid rgba(82,196,26,0.3); padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-            <i class="fa-solid fa-check"></i> Accept &amp; Reply
+          <button class="btn btn-sm btn-accept" data-id="${item.id}" style="background:rgba(82,196,26,0.18); color:#95de64; border:1px solid rgba(82,196,26,0.4); padding:8px 15px; font-size:0.8rem; font-weight:600; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-check"></i> Accept (Auto-Email Client)
           </button>
-          <button class="btn btn-sm btn-decline" data-id="${item.id}" style="background:rgba(255,77,79,0.15); color:#ffa39e; border:1px solid rgba(255,77,79,0.3); padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-            <i class="fa-solid fa-xmark"></i> Reject &amp; Reply
+          <button class="btn btn-sm btn-decline" data-id="${item.id}" style="background:rgba(255,77,79,0.18); color:#ffa39e; border:1px solid rgba(255,77,79,0.4); padding:8px 15px; font-size:0.8rem; font-weight:600; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-xmark"></i> Reject (Auto-Email Client)
           </button>
-          <button class="btn btn-sm btn-custom-reply" data-id="${item.id}" style="background:rgba(230,202,101,0.15); color:var(--gold-300); border:1px solid var(--border-gold); padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
-            <i class="fa-solid fa-paper-plane"></i> Custom Reply
+          <button class="btn btn-sm btn-custom-reply" data-id="${item.id}" style="background:rgba(230,202,101,0.15); color:var(--gold-300); border:1px solid var(--border-gold); padding:8px 12px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;" title="Write Custom Message">
+            <i class="fa-solid fa-pen-to-square"></i> Edit
           </button>
-          <button class="btn btn-sm btn-delete" data-id="${item.id}" style="background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:7px 12px; font-size:0.8rem; border-radius:4px; cursor:pointer;" title="Delete Record">
+          <button class="btn btn-sm btn-delete" data-id="${item.id}" style="background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:8px 12px; font-size:0.8rem; border-radius:4px; cursor:pointer;" title="Delete Record">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
       `;
 
-      // Accept & Reply Handler
+      // 1-Click Automatic Accept Handler
       const acceptBtn = card.querySelector('.btn-accept');
       acceptBtn?.addEventListener('click', () => {
-        item.status = "Accepted";
-        saveBookings(bookings);
-        showToast(`Booking ${item.refCode} marked as ACCEPTED. Opening customer reply...`, "success");
-        openReplyComposer(item, 'accept');
+        sendAutomaticDecisionEmail(item, 'accept', acceptBtn);
       });
 
-      // Decline & Reply Handler
+      // 1-Click Automatic Decline Handler
       const declineBtn = card.querySelector('.btn-decline');
       declineBtn?.addEventListener('click', () => {
-        item.status = "Declined";
-        saveBookings(bookings);
-        showToast(`Booking ${item.refCode} marked as DECLINED. Opening customer reply...`, "info");
-        openReplyComposer(item, 'decline');
+        sendAutomaticDecisionEmail(item, 'decline', declineBtn);
       });
 
-      // Custom Reply Handler
+      // Custom Edit / Composer Handler
       const customReplyBtn = card.querySelector('.btn-custom-reply');
       customReplyBtn?.addEventListener('click', () => {
         openReplyComposer(item, 'consult');
@@ -421,6 +407,116 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ownerBookingsList.appendChild(card);
     });
+  }
+
+  // ── Fully Automatic Email Dispatch to Client (0-Typing) ──
+  async function sendAutomaticDecisionEmail(booking, decision, triggerBtn = null) {
+    if (!booking || !booking.email) return;
+
+    const originalHtml = triggerBtn ? triggerBtn.innerHTML : '';
+    if (triggerBtn) {
+      triggerBtn.disabled = true;
+      triggerBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending to Client...`;
+    }
+
+    let payload = {};
+    if (decision === 'accept') {
+      payload = {
+        _subject: `👑 VIP Booking Confirmed: Aurora & Co. [${booking.refCode}]`,
+        _replyto: OWNER_EMAIL,
+        _template: "table",
+        _captcha: "false",
+        "Booking Status": "OFFICIALLY ACCEPTED & CONFIRMED",
+        "Dossier Reference": booking.refCode,
+        "Client Name": booking.fullName,
+        "Event Discipline": booking.eventType,
+        "Confirmed Date": booking.eventDate,
+        "Estimated Scale": `${booking.guests || 150} Attendees`,
+        "Investment Tier": booking.budgetTier || "Imperial",
+        "Executive Management": "Pranita Pawar & Julian Vance (Aurora & Co. Executive Atelier)",
+        "Atelier Confirmation": `Dear ${booking.fullName}, we are delighted to inform you that your VIP booking dossier (${booking.refCode}) for ${booking.eventType} on ${booking.eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co. Our Executive Producer Julian Vance will be in direct contact to proceed with your bespoke event consultation.`
+      };
+    } else {
+      payload = {
+        _subject: `Booking Inquiry Update: Aurora & Co. [${booking.refCode}]`,
+        _replyto: OWNER_EMAIL,
+        _template: "table",
+        _captcha: "false",
+        "Booking Status": "DECLINED (Schedule Fully Booked)",
+        "Dossier Reference": booking.refCode,
+        "Client Name": booking.fullName,
+        "Event Discipline": booking.eventType,
+        "Requested Date": booking.eventDate,
+        "Atelier Notice": `Dear ${booking.fullName}, thank you for reaching out to Aurora & Co. Regarding your booking inquiry (${booking.refCode}) for ${booking.eventDate}, our atelier calendar is currently at maximum capacity for this date and we cannot accept new productions. We warmly invite you to explore alternative dates.`
+      };
+    }
+
+    // 1. Send automatic email directly to client's email inbox
+    try {
+      await fetch(`https://formsubmit.co/ajax/${booking.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.log("Auto email dispatch background caught:", err);
+    }
+
+    // 2. Update booking status in local storage
+    const allBookings = getStoredBookings();
+    const target = allBookings.find(b => b.refCode === booking.refCode || b.id === booking.id);
+    if (target) {
+      target.status = decision === 'accept' ? 'Accepted' : 'Declined';
+      saveBookings(allBookings);
+    } else {
+      renderOwnerPortal();
+    }
+
+    if (triggerBtn) {
+      triggerBtn.disabled = false;
+      triggerBtn.innerHTML = originalHtml;
+    }
+
+    if (decision === 'accept') {
+      showToast(`👑 Booking ${booking.refCode} ACCEPTED! Acceptance email sent automatically to ${booking.email}`, "success");
+    } else {
+      showToast(`Booking ${booking.refCode} DECLINED. Notification email sent automatically to ${booking.email}`, "info");
+    }
+  }
+
+  // ── Handle Automatic Decision from Email URL Click ──
+  const urlParams = new URLSearchParams(window.location.search);
+  const autoAction = urlParams.get('auto_action');
+  if (autoAction && (autoAction === 'accept' || autoAction === 'decline')) {
+    const ref = urlParams.get('ref') || 'VIP Booking';
+    const name = urlParams.get('name') || 'VIP Client';
+    const email = urlParams.get('email');
+    const eventType = urlParams.get('event') || 'Bespoke Event';
+    const eventDate = urlParams.get('date') || 'Target Date';
+    const guests = urlParams.get('guests') || 150;
+    const budgetTier = urlParams.get('budget') || 'Imperial';
+
+    if (email) {
+      const autoBooking = {
+        refCode: ref,
+        fullName: name,
+        email: email,
+        eventType: eventType,
+        eventDate: eventDate,
+        guests: guests,
+        budgetTier: budgetTier
+      };
+      setTimeout(() => {
+        sendAutomaticDecisionEmail(autoBooking, autoAction);
+        openOwnerPortal();
+      }, 400);
+
+      // Clean the query parameters from URL bar
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }
 
   // ── Reply Composer Helper Functions ──
