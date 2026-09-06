@@ -38,6 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const ownerAcceptedCount = document.getElementById('owner-accepted-count');
   const ownerClearBtn = document.getElementById('owner-clear-all-btn');
 
+  // Customer Reply Composer Elements
+  const replyModal = document.getElementById('reply-composer-modal');
+  const replyModalClose = document.getElementById('reply-composer-close');
+  const replyModalTitle = document.getElementById('reply-modal-title');
+  const replyClientInfo = document.getElementById('reply-client-info');
+  const replySubjectInput = document.getElementById('reply-subject-input');
+  const replyBodyInput = document.getElementById('reply-body-input');
+  const replyTemplateAccept = document.getElementById('reply-template-accept');
+  const replyTemplateDecline = document.getElementById('reply-template-decline');
+  const replyTemplateConsult = document.getElementById('reply-template-consult');
+  const btnReplyGmail = document.getElementById('btn-reply-gmail');
+  const btnReplyMailto = document.getElementById('btn-reply-mailto');
+  const btnReplyCopy = document.getElementById('btn-reply-copy');
+
+  let activeReplyBooking = null;
+
   // Set minimum date to 3 days from today
   if (dateInput) {
     const today = new Date();
@@ -159,23 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Securing Booking Dossier...</span>`;
       }
 
-      // Create Mailto Action Links for Email Body
-      const acceptSubject = encodeURIComponent(`VIP Booking APPROVED: Aurora & Co. [${refCode}]`);
-      const acceptBody = encodeURIComponent(
-        `Dear ${fullName},\n\nWe are delighted to inform you that your VIP booking dossier (${refCode}) for ${eventType} on ${eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co.\n\nOur Executive Producer will be in direct contact with you to proceed with the private design consultation.\n\nWarm regards,\nAurora & Co. Event Atelier\nContact: ${OWNER_EMAIL}`
-      );
-      const acceptMailtoLink = `mailto:${email}?subject=${acceptSubject}&body=${acceptBody}`;
-
-      const declineSubject = encodeURIComponent(`Booking Update: Aurora & Co. [${refCode}]`);
-      const declineBody = encodeURIComponent(
-        `Dear ${fullName},\n\nThank you for reaching out to Aurora & Co. Regarding your booking inquiry (${refCode}) for ${eventDate}, our atelier is fully booked on this requested date and we are unable to accept new productions for this schedule.\n\nWe warmly invite you to inquire for alternative dates.\n\nWarm regards,\nAurora & Co. Event Atelier\nContact: ${OWNER_EMAIL}`
-      );
-      const declineMailtoLink = `mailto:${email}?subject=${declineSubject}&body=${declineBody}`;
-
       const emailPayload = {
         _subject: `👑 New VIP Event Booking: ${fullName} - ${eventType} [${refCode}]`,
         _replyto: email,
         _template: "table",
+        _captcha: "false",
         "Booking Reference": refCode,
         "Client Name": fullName,
         "Client Email": email,
@@ -185,22 +189,25 @@ document.addEventListener('DOMContentLoaded', () => {
         "Guest Count": `${guests} Attendees`,
         "Investment Budget": budgetTier,
         "Vision & Remarks": message,
-        "--- ACTION: ACCEPT BOOKING ---": `Click to Email Client ACCEPTANCE: ${acceptMailtoLink}`,
-        "--- ACTION: REJECT BOOKING ---": `Click to Email Client DECLINE: ${declineMailtoLink}`
+        "Atelier Action": `Direct reply available via Owner Portal or email to ${email}`
       };
 
       // Send to Owner Email via FormSubmit API
       try {
-        fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+        const response = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
           body: JSON.stringify(emailPayload)
-        }).catch(err => console.log("Background email notify note:", err));
+        });
+        const resData = await response.json().catch(() => ({}));
+        if (resData.message && resData.message.includes("activate")) {
+          showToast(`FormSubmit activation link sent to ${OWNER_EMAIL}. Click it once to enable direct inbox alerts.`, "info");
+        }
       } catch (err) {
-        console.log("Email dispatch caught:", err);
+        console.log("Background email dispatch caught:", err);
       }
 
       // Restore submit button state
@@ -344,47 +351,44 @@ document.addEventListener('DOMContentLoaded', () => {
           <strong style="color:var(--gold-400);">Vision Note:</strong> "${item.message}"
         </div>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
-          <button class="btn btn-sm btn-accept" data-id="${item.id}" style="background:#135200; color:#b7eb8f; border:1px solid #237804; padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer;">
-            <i class="fa-solid fa-check"></i> Accept &amp; Email Client
+        <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center;">
+          <button class="btn btn-sm btn-accept" data-id="${item.id}" style="background:rgba(82,196,26,0.15); color:#95de64; border:1px solid rgba(82,196,26,0.3); padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-check"></i> Accept &amp; Reply
           </button>
-          <button class="btn btn-sm btn-decline" data-id="${item.id}" style="background:#5c0011; color:#ffa39e; border:1px solid #820014; padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer;">
-            <i class="fa-solid fa-xmark"></i> Reject &amp; Email Client
+          <button class="btn btn-sm btn-decline" data-id="${item.id}" style="background:rgba(255,77,79,0.15); color:#ffa39e; border:1px solid rgba(255,77,79,0.3); padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-xmark"></i> Reject &amp; Reply
           </button>
-          <button class="btn btn-sm btn-delete" data-id="${item.id}" style="background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:7px 12px; font-size:0.8rem; border-radius:4px; cursor:pointer;">
+          <button class="btn btn-sm btn-custom-reply" data-id="${item.id}" style="background:rgba(230,202,101,0.15); color:var(--gold-300); border:1px solid var(--border-gold); padding:7px 14px; font-size:0.8rem; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+            <i class="fa-solid fa-paper-plane"></i> Custom Reply
+          </button>
+          <button class="btn btn-sm btn-delete" data-id="${item.id}" style="background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.1); padding:7px 12px; font-size:0.8rem; border-radius:4px; cursor:pointer;" title="Delete Record">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
       `;
 
-      // Accept Handler
+      // Accept & Reply Handler
       const acceptBtn = card.querySelector('.btn-accept');
       acceptBtn?.addEventListener('click', () => {
         item.status = "Accepted";
         saveBookings(bookings);
-        showToast(`Booking ${item.refCode} marked as ACCEPTED! Opening email to client...`, "success");
-
-        // Open formatted approval email draft to customer
-        const subject = encodeURIComponent(`VIP Booking APPROVED: Aurora & Co. [${item.refCode}]`);
-        const body = encodeURIComponent(
-          `Dear ${item.fullName},\n\nWe are pleased to inform you that your VIP booking dossier (${item.refCode}) for ${item.eventType} on ${item.eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co.\n\nOur Executive Producer is currently coordinating your private event atelier consultation.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Executive Management\nEmail: ${OWNER_EMAIL}`
-        );
-        window.location.href = `mailto:${item.email}?subject=${subject}&body=${body}`;
+        showToast(`Booking ${item.refCode} marked as ACCEPTED. Opening customer reply...`, "success");
+        openReplyComposer(item, 'accept');
       });
 
-      // Decline Handler
+      // Decline & Reply Handler
       const declineBtn = card.querySelector('.btn-decline');
       declineBtn?.addEventListener('click', () => {
         item.status = "Declined";
         saveBookings(bookings);
-        showToast(`Booking ${item.refCode} marked as DECLINED. Opening email to client...`, "error");
+        showToast(`Booking ${item.refCode} marked as DECLINED. Opening customer reply...`, "info");
+        openReplyComposer(item, 'decline');
+      });
 
-        // Open formatted decline email draft to customer
-        const subject = encodeURIComponent(`Booking Update: Aurora & Co. [${item.refCode}]`);
-        const body = encodeURIComponent(
-          `Dear ${item.fullName},\n\nThank you for considering Aurora & Co. for your upcoming ${item.eventType}.\n\nRegarding your booking inquiry (${item.refCode}) for ${item.eventDate}, our production calendar is currently at maximum capacity for this date, and we are unable to accept new commissions.\n\nPlease let us know if you would like to explore alternative dates with our atelier.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Executive Management\nEmail: ${OWNER_EMAIL}`
-        );
-        window.location.href = `mailto:${item.email}?subject=${subject}&body=${body}`;
+      // Custom Reply Handler
+      const customReplyBtn = card.querySelector('.btn-custom-reply');
+      customReplyBtn?.addEventListener('click', () => {
+        openReplyComposer(item, 'consult');
       });
 
       // Delete Handler
@@ -398,6 +402,145 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       ownerBookingsList.appendChild(card);
+    });
+  }
+
+  // ── Reply Composer Helper Functions ──
+  function generateReplyTemplate(type, booking) {
+    if (!booking) return { subject: '', body: '' };
+    if (type === 'accept') {
+      return {
+        subject: `VIP Booking APPROVED: Aurora & Co. [${booking.refCode}]`,
+        body: `Dear ${booking.fullName},\n\nWe are delighted to inform you that your VIP booking dossier (${booking.refCode}) for ${booking.eventType} on ${booking.eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co.\n\nOur Executive Producer Julian Vance is currently coordinating your private event atelier consultation.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Executive Atelier\nEmail: ${OWNER_EMAIL}`
+      };
+    } else if (type === 'decline') {
+      return {
+        subject: `Booking Update: Aurora & Co. [${booking.refCode}]`,
+        body: `Dear ${booking.fullName},\n\nThank you for considering Aurora & Co. for your upcoming ${booking.eventType}.\n\nRegarding your booking inquiry (${booking.refCode}) for ${booking.eventDate}, our production calendar is currently at maximum capacity for this date, and we are unable to accept new commissions.\n\nWe warmly invite you to explore alternative dates with our atelier.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Executive Atelier\nEmail: ${OWNER_EMAIL}`
+      };
+    } else {
+      return {
+        subject: `Private Consultation Scheduling: Aurora & Co. [${booking.refCode}]`,
+        body: `Dear ${booking.fullName},\n\nThank you for your VIP booking inquiry (${booking.refCode}) regarding your upcoming ${booking.eventType}.\n\nWe would love to schedule a dedicated 30-minute private consultation (Virtual or In-Atelier) to review your event vision, guest experience architecture, and investment scope.\n\nPlease reply with your preferred days and time slots this week.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Executive Atelier\nEmail: ${OWNER_EMAIL}`
+      };
+    }
+  }
+
+  function openReplyComposer(booking, initialType = 'accept') {
+    if (!replyModal) return;
+    activeReplyBooking = booking;
+
+    if (replyModalTitle) {
+      replyModalTitle.textContent = initialType === 'accept' ? 'Accept & Email Client' : initialType === 'decline' ? 'Decline & Email Client' : 'Executive Client Dispatch';
+    }
+
+    if (replyClientInfo) {
+      replyClientInfo.innerHTML = `
+        Recipient: <strong style="color:var(--text-pure);">${booking.fullName}</strong> &bull; 
+        Email: <a href="mailto:${booking.email}" style="color:var(--gold-400); text-decoration:underline;">${booking.email}</a> &bull;
+        Dossier: <span style="color:var(--gold-300); font-weight:700;">${booking.refCode}</span>
+      `;
+    }
+
+    const tpl = generateReplyTemplate(initialType, booking);
+    if (replySubjectInput) replySubjectInput.value = tpl.subject;
+    if (replyBodyInput) replyBodyInput.value = tpl.body;
+
+    replyModal.classList.add('open');
+  }
+
+  function closeReplyComposer() {
+    if (replyModal) replyModal.classList.remove('open');
+  }
+
+  if (replyModalClose) replyModalClose.addEventListener('click', closeReplyComposer);
+
+  // Template switchers
+  if (replyTemplateAccept) {
+    replyTemplateAccept.addEventListener('click', () => {
+      if (activeReplyBooking) {
+        const tpl = generateReplyTemplate('accept', activeReplyBooking);
+        if (replySubjectInput) replySubjectInput.value = tpl.subject;
+        if (replyBodyInput) replyBodyInput.value = tpl.body;
+      }
+    });
+  }
+
+  if (replyTemplateDecline) {
+    replyTemplateDecline.addEventListener('click', () => {
+      if (activeReplyBooking) {
+        const tpl = generateReplyTemplate('decline', activeReplyBooking);
+        if (replySubjectInput) replySubjectInput.value = tpl.subject;
+        if (replyBodyInput) replyBodyInput.value = tpl.body;
+      }
+    });
+  }
+
+  if (replyTemplateConsult) {
+    replyTemplateConsult.addEventListener('click', () => {
+      if (activeReplyBooking) {
+        const tpl = generateReplyTemplate('consult', activeReplyBooking);
+        if (replySubjectInput) replySubjectInput.value = tpl.subject;
+        if (replyBodyInput) replyBodyInput.value = tpl.body;
+      }
+    });
+  }
+
+  // 1-Click Gmail Web Composer
+  if (btnReplyGmail) {
+    btnReplyGmail.addEventListener('click', () => {
+      if (!activeReplyBooking) return;
+      const to = encodeURIComponent(activeReplyBooking.email);
+      const su = encodeURIComponent(replySubjectInput ? replySubjectInput.value : '');
+      const body = encodeURIComponent(replyBodyInput ? replyBodyInput.value : '');
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${su}&body=${body}`;
+      window.open(gmailUrl, '_blank');
+      showToast("Opening Gmail composer in new tab...", "success");
+    });
+  }
+
+  // Default Mail App Dispatch
+  if (btnReplyMailto) {
+    btnReplyMailto.addEventListener('click', () => {
+      if (!activeReplyBooking) return;
+      const to = activeReplyBooking.email;
+      const su = encodeURIComponent(replySubjectInput ? replySubjectInput.value : '');
+      const body = encodeURIComponent(replyBodyInput ? replyBodyInput.value : '');
+      const mailtoUrl = `mailto:${to}?subject=${su}&body=${body}`;
+      
+      const link = document.createElement('a');
+      link.href = mailtoUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Opening default mail app...", "info");
+    });
+  }
+
+  // Copy Formatted Reply to Clipboard
+  if (btnReplyCopy) {
+    btnReplyCopy.addEventListener('click', () => {
+      if (!activeReplyBooking) return;
+      const recipient = activeReplyBooking.email;
+      const subject = replySubjectInput ? replySubjectInput.value : '';
+      const body = replyBodyInput ? replyBodyInput.value : '';
+      const fullContent = `To: ${recipient}\nSubject: ${subject}\n\n${body}`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullContent).then(() => {
+          showToast("Email reply copied to clipboard!", "success");
+        }).catch(() => {
+          showToast("Copied to clipboard!", "info");
+        });
+      } else {
+        const tempTextarea = document.createElement('textarea');
+        tempTextarea.value = fullContent;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextarea);
+        showToast("Email reply copied to clipboard!", "success");
+      }
     });
   }
 

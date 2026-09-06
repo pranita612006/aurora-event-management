@@ -1159,6 +1159,70 @@
   </div>
 
   <!-- =========================================================================
+       5. VIP CUSTOMER REPLY / EMAIL COMPOSER MODAL
+       ========================================================================= -->
+  <div id="reply-composer-modal" class="modal-backdrop" style="z-index: 10005;">
+    <div class="modal-card" style="max-width: 680px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; padding: 28px; background: rgba(14, 18, 26, 0.98); border: 1px solid var(--border-gold);">
+      <button id="reply-composer-close" class="modal-close-btn" aria-label="Close Reply Composer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div style="margin-bottom: 18px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 14px;">
+        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-400); font-weight: 700;">
+          <i class="fa-solid fa-paper-plane"></i> Executive Client Dispatch
+        </div>
+        <h3 id="reply-modal-title" style="font-size: 1.4rem; color: var(--text-pure); margin-top: 4px;">
+          Customer Response Dispatch
+        </h3>
+        <div id="reply-client-info" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+          <!-- Dynamically populated recipient info -->
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; flex: 1; overflow-y: auto;">
+        <div>
+          <label class="form-label" style="font-size: 0.8rem; margin-bottom: 6px;">Email Subject</label>
+          <input type="text" id="reply-subject-input" class="form-control" style="padding: 10px 14px; font-size: 0.9rem;">
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
+            <label class="form-label" style="font-size: 0.8rem; margin-bottom: 0;">Message Content</label>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" id="reply-template-accept" class="btn btn-sm" style="font-size: 0.72rem; padding: 4px 10px; background: rgba(82, 196, 26, 0.15); color: #95de64; border: 1px solid rgba(82, 196, 26, 0.3); cursor: pointer;">
+                ✓ Acceptance
+              </button>
+              <button type="button" id="reply-template-decline" class="btn btn-sm" style="font-size: 0.72rem; padding: 4px 10px; background: rgba(255, 77, 79, 0.15); color: #ffa39e; border: 1px solid rgba(255, 77, 79, 0.3); cursor: pointer;">
+                ✗ Decline
+              </button>
+              <button type="button" id="reply-template-consult" class="btn btn-sm" style="font-size: 0.72rem; padding: 4px 10px; background: rgba(230, 202, 101, 0.15); color: var(--gold-300); border: 1px solid var(--border-gold); cursor: pointer;">
+                ✦ Consultation Call
+              </button>
+            </div>
+          </div>
+          <textarea id="reply-body-input" class="form-control" rows="8" style="padding: 12px 14px; font-size: 0.88rem; line-height: 1.6; font-family: var(--font-sans);"></textarea>
+        </div>
+      </div>
+
+      <!-- Action Buttons Grid -->
+      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-wrap: wrap; gap: 10px;">
+        <button type="button" id="btn-reply-gmail" class="btn btn-primary" style="flex: 1; min-width: 170px; justify-content: center; padding: 12px 16px;">
+          <i class="fa-brands fa-google"></i>
+          <span>Open in Gmail</span>
+        </button>
+        <button type="button" id="btn-reply-mailto" class="btn btn-secondary" style="flex: 1; min-width: 170px; justify-content: center; padding: 12px 16px;">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Default Mail App</span>
+        </button>
+        <button type="button" id="btn-reply-copy" class="btn btn-secondary" style="padding: 12px 18px; justify-content: center;">
+          <i class="fa-regular fa-copy"></i>
+          <span>Copy Reply</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
        VIP CONCIERGE CHAT WIDGET
        ========================================================================= -->
   <button id="concierge-toggle-btn" class="concierge-floating-btn animate-pulse-glow" aria-label="Open VIP Concierge">
