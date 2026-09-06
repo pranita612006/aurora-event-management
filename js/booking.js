@@ -176,20 +176,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const emailPayload = {
-        _subject: `👑 New VIP Event Booking: ${fullName} - ${eventType} [${refCode}]`,
+        _subject: `👑 VIP Event Dossier: ${fullName} - ${eventType} [${refCode}]`,
         _replyto: email,
         _template: "table",
         _captcha: "false",
-        "Booking Reference": refCode,
+        "Dossier Reference": refCode,
         "Client Name": fullName,
         "Client Email": email,
-        "Client Phone": phone,
+        "Contact Phone": phone,
         "Event Discipline": eventType,
-        "Desired Date": eventDate,
-        "Guest Count": `${guests} Attendees`,
-        "Investment Budget": budgetTier,
-        "Vision & Remarks": message,
-        "Atelier Action": `Direct reply available via Owner Portal or email to ${email}`
+        "Scheduled Date": eventDate,
+        "Estimated Scale": `${guests} Guests`,
+        "Investment Tier": budgetTier,
+        "Bespoke Remarks": message,
+        "Direct Reply": `Hit 'Reply' in your email app to respond directly to ${fullName} (${email}), or use the Aurora Owner Atelier Portal.`
       };
 
       // Send to Owner Email via FormSubmit API
