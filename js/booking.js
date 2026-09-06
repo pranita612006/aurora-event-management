@@ -175,21 +175,39 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Securing Booking Dossier...</span>`;
       }
 
+      // 1-Click Action Links for Owner in Email
+      const acceptSubject = encodeURIComponent(`VIP Booking APPROVED: Aurora & Co. [${refCode}]`);
+      const acceptBody = encodeURIComponent(
+        `Dear ${fullName},\n\nWe are delighted to inform you that your VIP booking dossier (${refCode}) for ${eventType} on ${eventDate} has been OFFICIALLY ACCEPTED by Aurora & Co.\n\nOur Executive Producer Julian Vance will be in direct contact with you to proceed with the private bespoke design consultation.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Event Atelier\nContact: ${OWNER_EMAIL}`
+      );
+      const gmailAcceptLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${acceptSubject}&body=${acceptBody}`;
+      const mailtoAcceptLink = `mailto:${email}?subject=${acceptSubject}&body=${acceptBody}`;
+
+      const declineSubject = encodeURIComponent(`Booking Update: Aurora & Co. [${refCode}]`);
+      const declineBody = encodeURIComponent(
+        `Dear ${fullName},\n\nThank you for reaching out to Aurora & Co. Regarding your booking inquiry (${refCode}) for ${eventDate}, our production calendar is currently at maximum capacity for this date and we are unable to accept new commissions.\n\nWe warmly invite you to inquire for alternative dates with our atelier.\n\nWarm regards,\nPranita Pawar\nAurora & Co. Event Atelier\nContact: ${OWNER_EMAIL}`
+      );
+      const gmailDeclineLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${declineSubject}&body=${declineBody}`;
+      const mailtoDeclineLink = `mailto:${email}?subject=${declineSubject}&body=${declineBody}`;
+
       const emailPayload = {
-        _subject: `👑 VIP Event Dossier: ${fullName} - ${eventType} [${refCode}]`,
+        _subject: `👑 [ACTION REQUIRED] VIP Event Booking: ${fullName} - ${eventType} [${refCode}]`,
         _replyto: email,
         _template: "table",
         _captcha: "false",
-        "Dossier Reference": refCode,
+        "Booking Reference": refCode,
         "Client Name": fullName,
         "Client Email": email,
         "Contact Phone": phone,
         "Event Discipline": eventType,
-        "Scheduled Date": eventDate,
-        "Estimated Scale": `${guests} Guests`,
-        "Investment Tier": budgetTier,
-        "Bespoke Remarks": message,
-        "Direct Reply": `Hit 'Reply' in your email app to respond directly to ${fullName} (${email}), or use the Aurora Owner Atelier Portal.`
+        "Desired Date": eventDate,
+        "Guest Count": `${guests} Attendees`,
+        "Investment Budget": budgetTier,
+        "Vision & Remarks": message,
+        "👉 [ 1. ACCEPT & EMAIL CLIENT (GMAIL) ]": gmailAcceptLink,
+        "👉 [ 2. REJECT & EMAIL CLIENT (GMAIL) ]": gmailDeclineLink,
+        "👉 [ ACCEPT (DEFAULT MAIL APP) ]": mailtoAcceptLink,
+        "👉 [ REJECT (DEFAULT MAIL APP) ]": mailtoDeclineLink
       };
 
       // Send to Owner Email via FormSubmit API
