@@ -8,8 +8,8 @@ function updateRangeTrack(input) {
   const max = parseFloat(input.max) || 100;
   const val = parseFloat(input.value) || 0;
   const pct = ((val - min) / (max - min)) * 100;
-  // Gold track fill via background gradient
-  input.style.background = `linear-gradient(to right, #D4AF37 0%, #D4AF37 ${pct}%, #232A3B ${pct}%, #232A3B 100%)`;
+  // Neural Cyan/Violet track fill via background gradient
+  input.style.background = `linear-gradient(to right, #22D3EE 0%, #A78BFA ${pct}%, #1A1D27 ${pct}%, #1A1D27 100%)`;
 }
 
 // Initialize all range inputs on page load
@@ -86,11 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 2 + 0.8,
-        speedX: (Math.random() - 0.5) * 0.4,
-        speedY: (Math.random() - 0.5) * 0.4 - 0.2,
-        alpha: Math.random() * 0.6 + 0.2,
-        color: ['#F7E7B4', '#D4AF37', '#E6CA65', '#FFF'][Math.floor(Math.random() * 4)]
+        radius: Math.random() * 1.8 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.35,
+        speedY: (Math.random() - 0.5) * 0.35 - 0.15,
+        alpha: Math.random() * 0.5 + 0.1,
+        color: ['#22D3EE', '#A78BFA', '#818CF8', 'rgba(34,211,238,0.6)', 'rgba(167,139,250,0.5)'][Math.floor(Math.random() * 5)]
       });
     }
 
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.alpha;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = '#D4AF37';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#22D3EE';
         ctx.fill();
 
         p.x += p.speedX;
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
+        entry.target.classList.add('visible');
         observer.unobserve(entry.target);
       }
     });

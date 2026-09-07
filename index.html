@@ -10,7 +10,7 @@
   <!-- Google Fonts Preconnect & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -91,6 +91,11 @@
        ========================================================================= -->
   <section id="hero" class="hero-section">
     <canvas id="hero-particle-canvas" class="hero-bg-canvas"></canvas>
+    <!-- Neural Grid Overlay -->
+    <div class="hero-neural-grid animate-neural-grid"></div>
+    <!-- Ambient Orbs -->
+    <div class="hero-orb hero-orb-cyan animate-orb-drift"></div>
+    <div class="hero-orb hero-orb-violet animate-orb-drift" style="animation-delay:-4s;"></div>
     <div class="hero-bg-overlay"></div>
 
     <div class="container hero-content">
@@ -178,6 +183,9 @@
        ABOUT US & HERITAGE
        ========================================================================= -->
   <section id="about" class="section">
+    <!-- Section ambient orb -->
+    <div class="section-orb section-orb-cyan" style="width:500px;height:500px;top:-100px;right:-150px;"></div>
+    <div class="section-orb section-orb-violet" style="width:400px;height:400px;bottom:-80px;left:-100px;"></div>
     <div class="container">
       <div class="about-grid">
         <!-- Visual Column -->
@@ -249,6 +257,7 @@
        SERVICES HUB
        ========================================================================= -->
   <section id="services" class="section">
+    <div class="section-orb section-orb-violet" style="width:600px;height:600px;top:-200px;left:50%;transform:translateX(-50%);"></div>
     <div class="container">
       <div class="section-header reveal-on-scroll">
         <div class="section-subtitle">Curated Offerings</div>
@@ -400,6 +409,7 @@
        PORTFOLIO & FILTERABLE GALLERY
        ========================================================================= -->
   <section id="portfolio" class="section">
+    <div class="section-orb section-orb-cyan" style="width:500px;height:500px;bottom:-100px;right:-80px;"></div>
     <div class="container">
       <div class="section-header reveal-on-scroll">
         <div class="section-subtitle">Grand Archives</div>
@@ -432,6 +442,7 @@
        INTERACTIVE BUDGET & EXPERIENCE ESTIMATOR
        ========================================================================= -->
   <section id="estimator" class="section">
+    <div class="section-orb section-orb-violet" style="width:500px;height:500px;top:0;left:-100px;"></div>
     <div class="container">
       <div class="section-header reveal-on-scroll">
         <div class="section-subtitle">Real-Time Planning Tool</div>
@@ -599,6 +610,7 @@
        PRICING & PACKAGES
        ========================================================================= -->
   <section id="pricing" class="section">
+    <div class="section-orb section-orb-cyan" style="width:600px;height:600px;top:-150px;left:50%;transform:translateX(-50%);"></div>
     <div class="container">
       <div class="section-header reveal-on-scroll">
         <div class="section-subtitle">Tiered Engagements</div>
@@ -676,6 +688,7 @@
        TESTIMONIALS & CLIENT REVIEWS
        ========================================================================= -->
   <section id="testimonials" class="section">
+    <div class="section-orb section-orb-violet" style="width:500px;height:500px;bottom:-80px;right:-80px;"></div>
     <div class="container">
       <div class="section-header reveal-on-scroll">
         <div class="section-subtitle">Words of Acclaim</div>
@@ -710,6 +723,7 @@
        CONTACT & SMART BOOKING SYSTEM
        ========================================================================= -->
   <section id="contact" class="section">
+    <div class="section-orb section-orb-cyan" style="width:500px;height:500px;top:-100px;right:-80px;"></div>
     <div class="container">
       <div class="section-header reveal-on-scroll">
         <div class="section-subtitle">Initiate Your Vision</div>
@@ -856,6 +870,7 @@
        FAQ ACCORDION
        ========================================================================= -->
   <section id="faq" class="section">
+    <div class="section-orb section-orb-violet" style="width:500px;height:500px;top:-100px;left:-80px;"></div>
     <div class="container">
       <div class="section-header reveal-on-scroll">
         <div class="section-subtitle">Inquiries &amp; Curiosities</div>

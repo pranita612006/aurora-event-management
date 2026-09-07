@@ -317,8 +317,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div');
       card.className = 'owner-booking-card';
 
-      let statusBadgeColor = '#E6CA65'; // gold for pending
-      let statusBg = 'rgba(230,202,101,0.15)';
+      let statusBadgeColor = '#22D3EE'; // cyan for pending
+      let statusBg = 'rgba(34, 211, 238, 0.15)';
       if (item.status === 'Accepted') {
         statusBadgeColor = '#52c41a';
         statusBg = 'rgba(82,196,26,0.15)';
